@@ -1,19 +1,17 @@
+// Gustavo Nishihara RA:169387
+
 #include <stdio.h>
 
-int crivo(int n){
-	int valor[10000];
-	int i, j;
-	for(i = 2; i <= 10000; i++){
-		valor[i] = 1;
-		for (j = i*i; j <= 10000;j += i){
-			valor[j] = 0;
-			}
+int primo(int n){
+int m;
+for(m = 2; m < n; m++){
+	if(n%m == 0){
+		return 0;
+		break;
 		}
-	if(valor[n] == 1){
-		return 1;
-		}
-	return 0;
 	}
+	return 1;
+}
 
 int main(void){
 
@@ -24,8 +22,10 @@ int main(void){
 	t = 0;
 	s = 0;
 
-	for(i = 1; s1 < 50 || s2 < 50; i+= 1)
+	for(i = 1; s1 < 50 && s2 < 50; i+= 1)
 	{
+		s = 0;
+		t = 0;
 		passou1 = 0;
 		passou2 = 0;	
 		scanf(" %d", &a1);
@@ -51,22 +51,20 @@ int main(void){
 			d2 = b1;
 			}
 		
-		if(crivo(c1 -c2) == 1){
+		if(primo(c1 -c2) == 1){
 			s1 = s1 + 5;
 			passou1 = 1;
 		}
 		
-		printf("s1 = %d\n",s1);
 		
-		if(crivo(d1 - d2) == 1){
+		if(primo(d1 - d2) == 1){
 			s2 = s2 + 5;
 			passou2 = 1;
 			}
 			
-		printf("s2 = %d\n", s2);
 
-		for(n = c2; n <= c1; n++){
-			if(crivo(n) == 1){
+		for(n = c2 ; n <= c1; n+= 1){
+			if(primo(n) == 1){
 				s = s + n;
 			}
 		}
@@ -77,8 +75,8 @@ int main(void){
 				}
 		
 		
-		for(n = d2; n <= d1; n++){
-			if(crivo(n) == 1){
+		for(n = d2; n <= d1; n+= 1){
+			if(primo(n) == 1){
 				t = t + n;
 			}
 		}
@@ -88,11 +86,11 @@ int main(void){
 					passou2 = 1;
 				}
 		
-		if(crivo(c1 -c2) == 0 && passou1 == 0){
+		if(passou1 == 0){
 			s1 += 1;
 			}
 			
-		if(crivo(d1 -d2) == 0 && passou2 == 0){
+		if(passou2 == 0){
 			s2 += 1;
 			}
 			
